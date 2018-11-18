@@ -103,7 +103,7 @@ public class Controller {
 
 				System.out.println("Saving complete!");
 
-				System.out.println("Closing icp client...");
+				System.out.println("Closing IPC client...");
 				onDisconnect(null);
 				System.out.println("Closing complete!");
 			}
