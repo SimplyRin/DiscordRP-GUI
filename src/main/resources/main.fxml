@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="336.0" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.simplyrin.discordrpgui.Controller">
+   <children>
+      <TextField fx:id="applicationId" alignment="TOP_CENTER" layoutX="14.0" layoutY="18.0" prefHeight="25.0" prefWidth="308.0" promptText="Application ID" />
+      <TextField fx:id="details" layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="150.0" promptText="Details" />
+      <TextField fx:id="state" layoutX="172.0" layoutY="51.0" prefHeight="25.0" prefWidth="150.0" promptText="State" />
+      <TextField fx:id="smallImageKey" layoutX="14.0" layoutY="82.0" prefHeight="25.0" prefWidth="150.0" promptText="Small Image Key" />
+      <TextField fx:id="smallImageText" layoutX="172.0" layoutY="82.0" prefHeight="25.0" prefWidth="150.0" promptText="Small Image Text" />
+      <TextField fx:id="largeImageKey" layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="150.0" promptText="Large Image Key" />
+      <TextField fx:id="largeImageText" layoutX="172.0" layoutY="114.0" prefHeight="25.0" prefWidth="150.0" promptText="Large Image Text" />
+      <Button fx:id="connect" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#onConnection" prefHeight="25.0" prefWidth="308.0" text="Connect" />
+      <Button fx:id="disconnect" layoutX="14.0" layoutY="180.0" mnemonicParsing="false" onAction="#onDisconnect" prefHeight="25.0" prefWidth="308.0" text="Disconnect" />
+   </children>
+</AnchorPane>
