@@ -1,7 +1,6 @@
 package net.simplyrin.discordrpgui;
 
 import java.io.File;
-import java.time.OffsetDateTime;
 
 import com.jagrosh.discordipc.IPCClient;
 import com.jagrosh.discordipc.entities.DiscordBuild;
@@ -68,6 +67,8 @@ public class Controller {
 
 	private RichPresence.Builder presence;
 	private IPCClient ipcClient;
+
+	private Long time = 0L;
 
 	@FXML
 	private void initialize()  {
@@ -143,27 +144,28 @@ public class Controller {
 		System.out.println("Large Image Key: " + largeImageKey);
 		System.out.println("Large Image Text: " + largeImageText);
 
-		this.onDisconnect(null);
-
-		this.ipcClient = null;
-		this.ipcClient = new IPCClient(applicationId);
-		try {
-			this.ipcClient.connect(new DiscordBuild[0]);
-		} catch (NoDiscordClientException e) {
-			this.buildAlert(AlertType.ERROR, "エラー", "Discord を起動している状態で実行してください！", null);
-			return;
+		if (this.ipcClient == null) {
+			this.ipcClient = new IPCClient(applicationId);
+			try {
+				this.ipcClient.connect(new DiscordBuild[0]);
+			} catch (NoDiscordClientException e) {
+				this.buildAlert(AlertType.ERROR, "エラー", "Discord を起動している状態で実行してください！", null);
+				return;
+			}
 		}
-		this.presence = null;
 		this.presence = new RichPresence.Builder();
 		this.presence.setDetails(details);
 		this.presence.setState(state);
-		this.presence.setStartTimestamp(OffsetDateTime.now());
+		if (this.time == 0L) {
+			this.time = System.currentTimeMillis();
+		}
+		this.presence.setStartTimestamp(this.time);
 		this.presence.setSmallImage(smallImageKey, smallImageText);
 		this.presence.setLargeImage(largeImageKey, largeImageText);
 		this.ipcClient.sendRichPresence(this.presence.build());
 
 		this.disconnect.setDisable(false);
-		this.connect.setText("Reconnect");
+		this.connect.setText("Re-Send");
 
 		this.buildAlert(AlertType.INFORMATION, "成功", "Discord に接続しました。", "Rich Presence を有効化しました！");
 	}
